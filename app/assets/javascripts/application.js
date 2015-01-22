@@ -14,3 +14,48 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+var form = $('#search');
+var query = $('#search-name');
+var result = $("#results");
+
+form.on("submit", search);
+
+function search(e){
+  e.preventDefault();
+  var url = 'http://www.strudel.org.uk/lookUP/json/?name=' +  query.val();
+
+  console.log()
+}
+
+//   $.ajax({
+//     url: url,
+//     dataType: "jsonp",
+//     type: "GET",
+//     success: function(response, status, jqXHR){
+//       showResults(response);
+//     },
+//     error: function(response, status, jqXHR){
+//       failure(response);
+//     }
+//   });
+// }
+
+// function showResults(response, status, jqXHR){
+//   var output;
+//   if (response.image === undefined){
+//     output = "no image for this query";
+//   }
+//   else{
+//     output = "<img src='http://" + response.image.src.replace("http://","") + "'>"; 
+//   } 
+//   result.empty();
+//   result.append(output);
+// }
+
+// function failure(response, status, jqXHR){
+//   var output = "API does not have data for your query!";
+//   result.empty();
+//   result.append(output);
+// }
