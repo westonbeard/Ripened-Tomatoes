@@ -10,16 +10,19 @@ function search(e){
   e.preventDefault();
 
   var moviesSearchUrl = baseUrl + '/api/public/v1.0/lists/movies/in_theaters.json?apikey=' + apikey + '&page_limit=8';
-  var query = query.val();
+
+  console.log(moviesSearchUrl);
 
   $.ajax({
-    url: moviesSearchUrl
+    url: moviesSearchUrl,
     dataType: "jsonp",
     success: searchCallback
   });
 }
 
 function searchCallback(data) {
+
+  console.log(data);
  result.append('Found ' + data.total + ' results for ' + query);
  var movies = data.movies;
  $.each(movies, function(index, movie) {
