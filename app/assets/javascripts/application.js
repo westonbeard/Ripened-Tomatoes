@@ -1,21 +1,5 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives.
-//
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require_tree .
-
-
+var apikey = "pq2ed2adddmx9crsnfwvhg36";
+var baseUrl = "http://api.rottentomatoes.com";
 var form = $('#search');
 var query = $('#search-name');
 var result = $("#results");
@@ -24,38 +8,46 @@ form.on("submit", search);
 
 function search(e){
   e.preventDefault();
-  var url = 'http://www.strudel.org.uk/lookUP/json/?name=' +  query.val();
 
-  console.log()
+  var moviesSearchUrl = baseUrl + '/api/public/v1.0/lists/movies/in_theaters.json?apikey=' + apikey + '&page_limit=8';
+  var query = query.val();
+
+  $.ajax({
+    url: moviesSearchUrl
+    dataType: "jsonp",
+    success: searchCallback
+  });
 }
 
+function searchCallback(data) {
+ result.append('Found ' + data.total + ' results for ' + query);
+ var movies = data.movies;
+ $.each(movies, function(index, movie) {
+   result.append('<h1>' + movie.title + '</h1>');
+   result.append('<img src="' + movie.posters.thumbnail + '" />');
+ });
+}
+
+
+// //var query = "Hook";
+
+// $(document).ready(function() {
+ 
+//   // send off the query
 //   $.ajax({
-//     url: url,
+//     url: moviesSearchUrl, //+ '&q=' + encodeURI(query),
 //     dataType: "jsonp",
 //     type: "GET",
-//     success: function(response, status, jqXHR){
-//       showResults(response);
-//     },
-//     error: function(response, status, jqXHR){
-//       failure(response);
-//     }
+//     success: searchCallback
 //   });
-// }
-
-// function showResults(response, status, jqXHR){
-//   var output;
-//   if (response.image === undefined){
-//     output = "no image for this query";
-//   }
-//   else{
-//     output = "<img src='http://" + response.image.src.replace("http://","") + "'>"; 
-//   } 
-//   result.empty();
-//   result.append(output);
-// }
-
-// function failure(response, status, jqXHR){
-//   var output = "API does not have data for your query!";
-//   result.empty();
-//   result.append(output);
+// });
+ 
+// // callback for when we get back the results
+// function searchCallback(data) {
+//  $(document.body).append('Found ' + data.total); //+ ' results for ' + query);
+//  var movies = data.movies;
+//  $.each(movies, function(index, movie) {
+//    $(document.body).append('<h1>' + movie.title + '</h1>');
+//    $(document.body).append('<img src="' + movie.posters.thumbnail + '" />');
+//  });
 // }
