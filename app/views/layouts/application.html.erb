@@ -14,6 +14,7 @@
 	<p class="alert alert-danger"><%= alert %></p>
 	<% end %>
 
+<<<<<<< HEAD
 	<p class="navbar-text pull-right">
 		<% if user_signed_in? %>
 		Logged in as <strong><%= current_user.email %></strong>.
@@ -23,6 +24,15 @@
 		<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
 		<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 		<% end %>
+=======
+<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+<%= yield %>
+>>>>>>> 9cb275bf65c29c48ac0044400e651be286ac0e69
 
 		<%= yield %>
 

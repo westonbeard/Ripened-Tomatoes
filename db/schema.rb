@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150122152549) do
+=======
+ActiveRecord::Schema.define(version: 20150122153537) do
+
+  create_table "movies", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "rating"
+    t.integer  "location"
+    t.string   "comment"
+    t.boolean  "has_seen"
+    t.integer  "user_rating"
+    t.boolean  "is_fav"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+>>>>>>> 9cb275bf65c29c48ac0044400e651be286ac0e69
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
