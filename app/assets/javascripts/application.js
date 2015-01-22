@@ -26,6 +26,8 @@ function searchCallback(data) {
  result.append('Found ' + data.total + ' results for ' + query);
  var movies = data.movies;
  $.each(movies, function(index, movie) {
+
+    //need to add movies to DB as they populate page
    result.append('<h1>' + movie.title + '</h1>');
    result.append('<img src="' + movie.posters.thumbnail + '" />');
  });
