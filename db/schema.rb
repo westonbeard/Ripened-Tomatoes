@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122153537) do
+ActiveRecord::Schema.define(version: 20150122221416) do
 
   create_table "movies", force: :cascade do |t|
     t.string   "name"
@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(version: 20150122153537) do
     t.boolean  "has_seen"
     t.integer  "user_rating"
     t.boolean  "is_fav"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.boolean  "on_movie_list"
   end
 
   create_table "users", force: :cascade do |t|
