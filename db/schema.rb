@@ -11,9 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150122152549) do
-=======
 ActiveRecord::Schema.define(version: 20150122153537) do
 
   create_table "movies", force: :cascade do |t|
@@ -27,11 +24,11 @@ ActiveRecord::Schema.define(version: 20150122153537) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
->>>>>>> 9cb275bf65c29c48ac0044400e651be286ac0e69
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
+    t.integer  "location"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
