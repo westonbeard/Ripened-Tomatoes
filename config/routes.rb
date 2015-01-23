@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   root "users#index"
 
+  post "movies/added/:api_id", to: "movies#added"
+
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

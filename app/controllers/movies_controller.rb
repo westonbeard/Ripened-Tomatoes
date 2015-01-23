@@ -12,4 +12,12 @@ class MoviesController < ApplicationController
   def index
   end
 
+  def added
+    #@paramaters =  params[:api_id]
+    @cookie = cookie[:the_cookie]
+
+    
+  end
+
+
 end

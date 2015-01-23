@@ -6,12 +6,11 @@ var result = $("#results");
 
 form.on("submit", search);
 
+
 function search(e){
   e.preventDefault();
 
   var moviesSearchUrl = baseUrl + '/api/public/v1.0/lists/movies/in_theaters.json?apikey=' + apikey + '&page_limit=8';
-
-  console.log(moviesSearchUrl);
 
   $.ajax({
     url: moviesSearchUrl,
@@ -22,15 +21,38 @@ function search(e){
 
 function searchCallback(data) {
 
-  console.log(data);
  result.append('Found ' + data.total + ' results for ' + query);
  var movies = data.movies;
+
+ document.cookie = "the_cookie=test";
+ //$.cookie('the_cookie', 'the_value', { expires: 7, path: '/' });
  $.each(movies, function(index, movie) {
 
     //need to add movies to DB as they populate page
+
+  //result.append('<a href="' + "/movies/added/" + movie.id + '">' + 'Add to Movies' + '<a/>');
+    result.append('<a href="' + "/movies/added/" + '">' + 'Add to Movies' + '<a/>');
    result.append('<h1>' + movie.title + '</h1>');
    result.append('<img src="' + movie.posters.thumbnail + '" />');
  });
+
+  getTop90(data);
+
+}
+
+
+function getTop90(data){
+  top90 = {}
+  var movies = data.movies;
+
+  top90 = $.each(movies, function(index, movie){
+
+    if (movie.ratings.critics_score > 89){
+      top90 += movie;
+    }
+  });
+  console.log(movies.length);
+  console.log(top90.length);
 }
 
 
