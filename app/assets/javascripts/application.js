@@ -1,3 +1,20 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file.
+//
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require_tree .
+
 var apikey = "pq2ed2adddmx9crsnfwvhg36";
 var baseUrl = "http://api.rottentomatoes.com";
 var form = $('#search');
@@ -24,21 +41,38 @@ function searchCallback(data) {
  result.append('Found ' + data.total + ' results for ' + query);
  var movies = data.movies;
 
- document.cookie = "the_cookie=test";
- //$.cookie('the_cookie', 'the_value', { expires: 7, path: '/' });
  $.each(movies, function(index, movie) {
 
     //need to add movies to DB as they populate page
 
   //result.append('<a href="' + "/movies/added/" + movie.id + '">' + 'Add to Movies' + '<a/>');
-    result.append('<a href="' + "/movies/added/" + '">' + 'Add to Movies' + '<a/>');
+    result.append('<a href="' + "/movies/added" + '">' + 'Add to Movies' + '<a/>');
+   
    result.append('<h1>' + movie.title + '</h1>');
+
+   result.append("<form class=submit_buttons><input type=submit id=" + movie.id   + " value=submit ></form>");
    result.append('<img src="' + movie.posters.thumbnail + '" />');
  });
 
-  getTop90(data);
+ $(".submit_buttons").on("submit",function(event){
+  event.preventDefault();
+  movie_id = this.firstChild.getAttribute("id");
+  console.log(movie_id);
+  // console.log($(this).find(id));
+
+  $.ajax({
+    type: "POST",
+    url: "/movies/",
+    data: {movie_id: movie_id}
+    
+  });
+
+//  $.post("/movies/",movie_id);
+});
 
 }
+
+
 
 
 function getTop90(data){
@@ -51,8 +85,8 @@ function getTop90(data){
       top90 += movie;
     }
   });
-  console.log(movies.length);
-  console.log(top90.length);
+  // console.log(movies.length);
+  // console.log(top90.length);
 }
 
 

@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
   end
   def edit
@@ -10,14 +12,30 @@ class MoviesController < ApplicationController
   def show
   end
   def index
+    unless user_signed_in?
+      redirect_to "/users/sign_up"
+    end
   end
 
   def added
     #@paramaters =  params[:api_id]
-    @cookie = cookie[:the_cookie]
+    @movie_id = params[:movie_id]
 
     
   end
 
+  def create
+
+    @movie = Movie.create(name: params[:movie_id])
+
+    if @movie.save
+      redirect_to movie_path(@movie)
+    else
+      render :new
+    end
+
+  end
+
 
 end
+
