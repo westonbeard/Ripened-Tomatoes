@@ -2,22 +2,42 @@
 <html>
 <head>
 
-  <title>RipenedTomatoes</title>
+	<title>RipenedTomatoes</title>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
- 
-  <%= csrf_meta_tags %>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+	<%= csrf_meta_tags %>
+
 
 
 </head>
 <body>
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
-<%= yield %>
- <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<% if notice %>
+	<p class="alert alert-success"><%= notice %></p>
+	<% end %>
+	<% if alert %>
+	<p class="alert alert-danger"><%= alert %></p>
+	<% end %>
+	<div class="logo">
+
+		<%= link_to image_tag( 'logo_small.png' ), root_path %>
+	</div>
+
+	<header>
+		<div class="nav">
+			<ul>
+				<li class="home"><a href="/">Home</a></li>
+				<li class="movies"><a href="/">Movies</a></li>
+				<li class="favorites"><a href="/">Favorites</a></li>
+				<li class="signout"><a href=" /users/sign_out">Sign Out</a></li>
+			</ul>
+		</div>
+	</header>
+	<div class="content">
+		<div class="poster">
+	<%= yield %>
+		</div>
+	</div>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>
