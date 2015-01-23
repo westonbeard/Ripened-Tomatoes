@@ -47,7 +47,7 @@ function searchCallback(data) {
    result.append('<h1 class="movies">' + movie.title + ' (' + movie.year + ')</h1>');
    result.append('<img src="' + movie.posters.original + '" class="poster" />');
    result.append('<h3 class="movies">Rated ' + movie.mpaa_rating + '</h3>');
-  result.append('<div class="score"><h3>' + movie.ratings.critics_score + '%</h3></div>');
+  result.append('<div class="score"><h2>' + movie.ratings.critics_score + '%</h2></div>');
 
   // result.append('<a href="' + "/movies/added" + '">' + 'Add to Movies' + '<a/>');
 
