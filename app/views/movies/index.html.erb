@@ -1,11 +1,7 @@
-index page!
-
-
 
 <% @movies.each do |movie| %>
+  
+  <%= link_to movie.name, movie_path(movie) %>
+  <br>
 
-  <p>  <%= movie.name %></p>
-  <%= link_to "Movie Page", movie_path(movie) %>
- 
-</div>
   <% end %>

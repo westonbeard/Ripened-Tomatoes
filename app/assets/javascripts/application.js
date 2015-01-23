@@ -29,7 +29,7 @@ form.on("submit", search);
 function search(e){
   e.preventDefault();
 
-  var moviesSearchUrl = baseUrl + '/api/public/v1.0/lists/movies/in_theaters.json?apikey=' + apikey + '&page_limit=8';
+  var moviesSearchUrl = baseUrl + '/api/public/v1.0/lists/movies/in_theaters.json?apikey=' + apikey + '&page_limit=50';
 
   $.ajax({
     url: moviesSearchUrl,
