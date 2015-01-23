@@ -43,15 +43,21 @@ function searchCallback(data) {
 
  $.each(movies, function(index, movie) {
 
-    //need to add movies to DB as they populate page
+   if ( parseInt(movie.ratings.critics_score) >= 75 ){
+   result.append('<h1 class="movies">' + movie.title + '</h1>');
+   result.append('<img src="' + movie.posters.original + '" class="poster" />');
+  result.append('<div class="score"><h3>' + movie.ratings.critics_score + '%</h3></div>');
 
-  //result.append('<a href="' + "/movies/added/" + movie.id + '">' + 'Add to Movies' + '<a/>');
-    result.append('<a href="' + "/movies/added" + '">' + 'Add to Movies' + '<a/>');
+  result.append('<a href="' + "/movies/added" + '">' + 'Add to Movies' + '<a/>');
    
-   result.append('<h1>' + movie.title + '</h1>');
+  result.append('<h1>' + movie.title + '</h1>');
 
-   result.append("<form class=submit_buttons><input type=submit id=" + movie.id   + " value=submit ></form>");
+  result.append("<form class=submit_buttons><input type=submit id=" + movie.id   + " value=submit ></form>");
    result.append('<img src="' + movie.posters.thumbnail + '" />');
+ }
+
+
+
  });
 
  $(".submit_buttons").on("submit",function(event){
@@ -67,48 +73,5 @@ function searchCallback(data) {
     
   });
 
-//  $.post("/movies/",movie_id);
 });
-
 }
-
-
-
-
-function getTop90(data){
-  top90 = {}
-  var movies = data.movies;
-
-  top90 = $.each(movies, function(index, movie){
-
-    if (movie.ratings.critics_score > 89){
-      top90 += movie;
-    }
-  });
-  // console.log(movies.length);
-  // console.log(top90.length);
-}
-
-
-// //var query = "Hook";
-
-// $(document).ready(function() {
- 
-//   // send off the query
-//   $.ajax({
-//     url: moviesSearchUrl, //+ '&q=' + encodeURI(query),
-//     dataType: "jsonp",
-//     type: "GET",
-//     success: searchCallback
-//   });
-// });
- 
-// // callback for when we get back the results
-// function searchCallback(data) {
-//  $(document.body).append('Found ' + data.total); //+ ' results for ' + query);
-//  var movies = data.movies;
-//  $.each(movies, function(index, movie) {
-//    $(document.body).append('<h1>' + movie.title + '</h1>');
-//    $(document.body).append('<img src="' + movie.posters.thumbnail + '" />');
-//  });
-// }

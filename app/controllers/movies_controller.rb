@@ -1,6 +1,8 @@
 class MoviesController < ApplicationController
   before_action :authenticate_user!
 
+  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+
   def new
   end
   def edit
@@ -12,9 +14,14 @@ class MoviesController < ApplicationController
   def show
   end
   def index
+
+
     unless user_signed_in?
       redirect_to "/users/sign_up"
     end
+
+    @movies = Movie.all
+
   end
 
   def added
@@ -36,6 +43,9 @@ class MoviesController < ApplicationController
 
   end
 
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
 
 end
 
