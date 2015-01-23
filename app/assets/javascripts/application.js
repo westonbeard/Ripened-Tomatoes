@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require_tree .
 
+
+
 var apikey = "pq2ed2adddmx9crsnfwvhg36";
 var baseUrl = "http://api.rottentomatoes.com";
 var form = $('#search');
@@ -44,30 +46,28 @@ function searchCallback(data) {
  $.each(movies, function(index, movie) {
 
    if ( parseInt(movie.ratings.critics_score) >= 75 ){
+
    result.append('<h1 class="movies">' + movie.title + ' (' + movie.year + ')</h1>');
-   result.append('<img src="' + movie.posters.original + '" class="poster" />');
-   result.append('<h3 class="movies">Rated ' + movie.mpaa_rating + '</h3>');
-  result.append('<div class="score"><h2>' + movie.ratings.critics_score + '%</h2></div>');
-
-  // result.append('<a href="' + "/movies/added" + '">' + 'Add to Movies' + '<a/>');
-
-  result.append("<form class=submit_buttons><input type=submit id=" + movie.id   + " value=Add_to_list ></form>");
+     result.append('<img src="' + movie.posters.original + '" class="poster" />');
+        result.append('<h3 class="movies">Rated ' + movie.mpaa_rating + '</h3>');
+    result.append('<div class="score"><h3>' + movie.ratings.critics_score + '%</h3></div>');
+    result.append("<form class=submit_buttons><input type=submit id=" + movie.title   + " value=Add_to_list ></form>");
  }
-
  });
 
  $(".submit_buttons").on("submit",function(event){
   event.preventDefault();
-  movie_id = this.firstChild.getAttribute("id");
-  console.log(movie_id);
-  // console.log($(this).find(id));
+  var img_src = this.nextSibling.nextSibling.getAttribute('src');
+
+  var movie_id = this.firstChild.getAttribute("id");
+  var img_id = $(this).closest("img");
 
   $.ajax({
     type: "POST",
     url: "/movies/",
-    data: {movie_id: movie_id}
-    
+    data: {movie_id: movie_id,
+      img_src: img_src
+      }
   });
-
 });
 }

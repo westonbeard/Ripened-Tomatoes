@@ -8,13 +8,13 @@ class MoviesController < ApplicationController
   def edit
   end
   def update
+    
   end
   def destroy
   end
   def show
   end
   def index
-
 
     unless user_signed_in?
       redirect_to "/users/sign_up"
@@ -33,7 +33,7 @@ class MoviesController < ApplicationController
 
   def create
 
-    @movie = Movie.create(name: params[:movie_id])
+    @movie = Movie.create(name: params[:movie_id], location: params[:img_src])
 
     if @movie.save
       redirect_to movie_path(@movie)
