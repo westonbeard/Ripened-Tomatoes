@@ -1,6 +1,34 @@
-show page!
 
 
-<%= @movie %>
+Name:
+<%= @movie.name %>
+<br>
+
+Critic Rating:
+<%= @movie.rating %>
+<br>
+
+Photo:
+<%= @movie.location %>
+<br>
+
+Comment:
+<%= @movie.location %>
+<br>
 
 
+Has Seen:
+<%= @movie.has_seen %>
+<br>
+
+User Rating:
+<%= @movie.user_rating %>
+<br>
+
+Toggle Favorite:
+<%= @movie.is_fav %>
+<br>
+
+<strong>
+
+<%= link_to 'Edit', edit_movie_path(@movie) %></strong>
