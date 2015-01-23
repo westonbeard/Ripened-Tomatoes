@@ -1,1 +1,12 @@
 index page!
+
+
+
+<% @movies.each do |movie| %>
+
+  <p>  <%= movie.name %></p>
+  <%= link_to "Movie Page", movie_path(movie) %>
+  <%= link_to "Edit Joke", edit_movie_path(movie) %>
+  
+</div>
+  <% end %>
