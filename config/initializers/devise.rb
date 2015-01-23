@@ -97,6 +97,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
+
   # config.pepper = '5ec049a2e9e1a3b1019b9a8213f037f729f01db5c5a0823224a2ef6175d09cc627312777127985b5a74be654b93c51a3e96a9b46c9f4e8512d9fc6c61ea1aad7'
 
   # ==> Configuration for :confirmable
