@@ -48,15 +48,10 @@ function searchCallback(data) {
    result.append('<img src="' + movie.posters.original + '" class="poster" />');
   result.append('<div class="score"><h3>' + movie.ratings.critics_score + '%</h3></div>');
 
-  result.append('<a href="' + "/movies/added" + '">' + 'Add to Movies' + '<a/>');
-   
-  result.append('<h1>' + movie.title + '</h1>');
+  // result.append('<a href="' + "/movies/added" + '">' + 'Add to Movies' + '<a/>');
 
-  result.append("<form class=submit_buttons><input type=submit id=" + movie.id   + " value=submit ></form>");
-   result.append('<img src="' + movie.posters.thumbnail + '" />');
+  result.append("<form class=submit_buttons><input type=submit id=" + movie.id   + " value=Add_to_list ></form>");
  }
-
-
 
  });
 
