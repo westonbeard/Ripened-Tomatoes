@@ -38,7 +38,7 @@ function search(e){
 
 function searchCallback(data) {
 
- result.append('Found ' + data.total + ' results for ' + query);
+ // result.append('Found ' + data.total + ' results for ' + query);
  var movies = data.movies;
 
  $.each(movies, function(index, movie) {
