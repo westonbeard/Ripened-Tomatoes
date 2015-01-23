@@ -50,8 +50,9 @@ function searchCallback(data) {
    result.append('<h1 class="movies">' + movie.title + ' (' + movie.year + ')</h1>');
      result.append('<img src="' + movie.posters.original + '" class="poster" />');
         result.append('<h3 class="movies">Rated ' + movie.mpaa_rating + '</h3>');
-    result.append('<div class="score"><h3>' + movie.ratings.critics_score + '%</h3></div>');
     result.append("<form class=submit_buttons><input type=submit id=" + movie.title   + " value=Add_to_list ></form>");
+        result.append('<div class="score"><h3>' + movie.ratings.critics_score + '%</h3></div>');
+
  }
  });
 
